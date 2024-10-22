@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "fishsense_database"
+version = "0.1.0"
+description = ""
+authors = []
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+psycopg2 = "^2.9.10"
+gitpython = "^3.1.43"
+backoff = "^2.2.1"
+
+[tool.poetry.group.prod.dependencies]
+gunicorn = "^22.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
