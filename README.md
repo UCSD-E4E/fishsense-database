@@ -17,8 +17,8 @@ pip install psycog2
 
 
 
-# do backend services to create routes to be able to interface with database
+// do backend services to create routes to be able to interface with database
 
-# keep sqlite database in fishsense lite jic headless system has no wifi, then when internet, then initiate transfer to postgresql
+// keep sqlite database in fishsense lite jic headless system has no wifi, then when internet, then initiate transfer to postgresql
 
-# impersonation user
+// impersonation user
