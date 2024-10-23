@@ -84,7 +84,7 @@ class Database:
             """CREATE TABLE IF NOT EXISTS data
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(100),
-                image BYTEA NOT NULL,
+                image TEXT NOT NULL,
                 file_type VARCHAR(50),
                 uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 user_id INTEGER REFERENCES users(id),
