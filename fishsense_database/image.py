@@ -56,6 +56,10 @@ def get_img(username: str, img_name: str, email = None) -> bytes:
         print("User does not exist")
         raise ValueError("User does not exist")
     
+    if get_img(username, img_name, email) is None:
+        print("Image does not exist")
+        raise ValueError("Image does not exist")
+    
     user_id = existing_check[0][0]
     
     with Database() as db:
