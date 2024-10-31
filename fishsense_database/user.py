@@ -38,6 +38,7 @@ def create_user(username: str, email: str)-> int:
         if len(existing_check) > 0:
             print("User already exists")
             user_id = existing_check[0][0]
+            raise ValueError("User already exists")
             return user_id
         
         db._cursor.execute(
@@ -88,13 +89,14 @@ def update_user(username: str, email: str) -> None:
         db._connection.commit()
         return True
     
-def delete_user(username:str) -> bool:
+def delete_user(username:str, email:str) -> bool:
     """
     Delete a user from the database.
     """
     existing_check = get_user(username, email)
     if len(existing_check) == 0:
         print("User does not exist")
+        raise ValueError("User does not exist")
         return False
     
     with Database() as db:
