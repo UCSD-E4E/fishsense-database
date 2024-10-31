@@ -24,7 +24,6 @@ def get_user(user, email) -> list:
             )
         else:
             raise ValueError("Must provide either a username or email.")
-            return None
         
         return db._cursor.fetchall()
 
@@ -61,7 +60,6 @@ def update_user(username: str, email: str) -> None:
     
     if not username and not email:
         raise ValueError("Must provide a username and email.")
-        return False
         
     with Database() as db:
         
@@ -97,7 +95,6 @@ def delete_user(username:str, email:str) -> bool:
     if len(existing_check) == 0:
         print("User does not exist")
         raise ValueError("User does not exist")
-        return False
     
     with Database() as db:
         db._cursor.execute(

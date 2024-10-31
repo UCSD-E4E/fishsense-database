@@ -7,7 +7,6 @@ def upload_img(username: str, img: str, img_name:str, file_type:str, result_txt:
     if len(existing_check) == 0:
         print("User does not exist")
         raise ValueError("User does not exist")
-        return False
     
     user_id = existing_check[0][0]
     
@@ -33,7 +32,6 @@ def get_all_user_imgs(username: str, email = None) -> list:
     if len(existing_check) == 0:
         print("User does not exist")
         raise ValueError("User does not exist")
-        return []
     
     user_id = existing_check[0][0]
     
@@ -57,7 +55,6 @@ def get_img(username: str, img_name: str, email = None) -> bytes:
     if len(existing_check) == 0:
         print("User does not exist")
         raise ValueError("User does not exist")
-        return None
     
     user_id = existing_check[0][0]
     
@@ -86,7 +83,6 @@ def delete_img(username: str, img_name: str, email = None) -> bool:
     if len(existing_check) == 0:
         print("User does not exist")
         raise ValueError("User does not exist")
-        return False
     
     user_id = existing_check[0][0]
     
@@ -110,16 +106,13 @@ def update_length(username: str, img_name: str, length: float, email = None) -> 
     if len(existing_check) == 0:
         print("User does not exist")
         raise ValueError("User does not exist")
-        return False
     
     if get_img(username, img_name, email) is None:
         print("Image does not exist")
         raise ValueError("Image does not exist")
-        return False
     
     if not length: 
         raise ValueError("Must provide a length.")
-        return False
     
     user_id = existing_check[0][0]
     
