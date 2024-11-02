@@ -1,7 +1,7 @@
 import datetime
 from os import makedirs, getenv
 from pathlib import Path
-from psycopg2 import connect, cursor, OperationalError, Connection
+from psycopg2 import connect, OperationalError
 from typing import Dict, Set
 
 import backoff
@@ -13,8 +13,8 @@ import git
 class Database:
     def __init__(self, path: Path) -> None:
         self._path = path
-        self._connection: Connection = None
-        self._cursor: cursor = None
+        self._connection = None
+        self._cursor = None
         
     def load_config(self):
     
