@@ -1,7 +1,7 @@
 import datetime
 from os import makedirs, getenv
 from pathlib import Path
-from psycopg2 import connect, cursor, OperationalError, Connection
+from psycopg2 import connect, OperationalError
 from typing import Dict, Set
 
 import backoff
@@ -11,10 +11,10 @@ import git
 
 
 class Database:
-    def __init__(self, path: Path) -> None:
-        self._path = path
-        self._connection: Connection = None
-        self._cursor: cursor = None
+    def __init__(self) -> None:
+        # self._path = path # make a parameter, might need for mobile
+        self._connection = None
+        self._cursor = None
         
     def load_config(self):
     
@@ -49,16 +49,16 @@ class Database:
             return None
         
     def __enter__(self):
-        if not self._path.parent.exists():
-            makedirs(self._path.parent.absolute().as_posix(), exist_ok=True)
+        # if not self._path.parent.exists():
+        #     makedirs(self._path.parent.absolute().as_posix(), exist_ok=True)
 
         self._connection = self.connect()
         self._cursor = self._connection.cursor()
 
         self._create_metadata_table()
+        
 
         self._create_data_table()
-        self._create_user_table()
 
         return self
 
@@ -81,7 +81,7 @@ class Database:
     @backoff.on_exception(backoff.expo, OperationalError)
     def _create_data_table(self):
         self._cursor.execute(
-            """CREATE TABLE IF NOT EXISTS data
+            """CREATE TABLE IF NOT EXISTS data (
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(100),
                 image TEXT NOT NULL,
@@ -90,6 +90,7 @@ class Database:
                 user_id INTEGER REFERENCES users(id),
                 result TEXT,
                 length FLOAT
+            )
             """
         )
         self._connection.commit()
