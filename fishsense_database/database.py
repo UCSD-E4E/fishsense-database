@@ -23,6 +23,7 @@ class Database:
         self._connection = None
         self._cursor = None
         self.time = None
+        self.lock_id = "1234123412341234"
         
     def load_config(self):
     
@@ -98,9 +99,16 @@ class Database:
         self._connection = self.connect()
         self._cursor = self._connection.cursor()
         
+        self._cursor.execute("SELECT pg_advisory_lock(%s);", (self.lock_id,))
+        print("Initializing database")
+
+        
         self._cursor.execute(open("fishsense-database/scripts/init_database.sql", "r").read())
         self._connection.commit()
         
+        print("Database initialized")
+        self._cursor.execute("SELECT pg_advisory_unlock(%s);", (self.lock_id,))
+
         self._cursor.close()
         self._connection.close()
         
@@ -111,14 +119,19 @@ class Database:
         self._connection = self.connect()
         self._cursor = self._connection.cursor()
         
+        self._cursor.execute("SELECT pg_advisory_lock(%s);", (self.lock_id,))
+
         self._cursor.execute(open("fishsense-database/scripts/delete_database.sql", "r").read())
         self._connection.commit()
+        
+        self._cursor.execute("SELECT pg_advisory_unlock(%s);", (self.lock_id,))
+
         
         self._cursor.close()
         self._connection.close()
         
     def exec_script(self, file_path : str, http_code : int, parameters= None):
-            
+        # TODO add locks?
         try:  
             sql_script = open(file_path, "r").read()
 
@@ -139,7 +152,11 @@ class Database:
             print("Exception caught with ", file_path, e)
             return None
            
-            
+    def calc_time_diff(self, time):
+        return int((time - self.time).total_seconds())
+    
+    def get_time(self, time_diff):
+        return self.time + datetime.timedelta(seconds=time_diff)
          
         
 
