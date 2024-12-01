@@ -1,0 +1,1 @@
+SELECT insert_organization(:'organization_name') AS result;

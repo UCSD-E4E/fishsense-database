@@ -10,44 +10,48 @@ services:
       PGDATA: /data/postgres
       POSTGRES_DB: fishsense_db
     volumes:
-      - db:/data/postgres
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./fishsense_database:/fishsense_database  
+
     ports:
       - "5332:5432"
-    networks:
-      - database_network
+    # networks:
+    #   - database_network
     restart: always
+    shm_size: 256mb
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 30s
       timeout: 10s
       retries: 5
 
-  app:
-    build: .
-    depends_on:
-      - db
-    links:
-      - db:db
-    environment:
-      DB_HOST: db
-      DB_NAME: fishsense_db
-      DB_USER: placeholder_superuser
-      DB_PASSWORD: placeholder_pw
-    ports:
-      - "4000:4000" #8000 taken by fishsense_Services
-    networks:
-      - database_network
+  # app:
+  #   build: .
+  #   depends_on:
+  #     - db
+  #   links:
+  #     - db:db
+  #   environment:
+  #     DB_HOST: db
+  #     DB_NAME: fishsense_db
+  #     DB_USER: placeholder_superuser
+  #     DB_PASSWORD: placeholder_pw
+  #   ports:
+  #     - "4000:4000" #8000 taken by fishsense_Services
+  #   networks:
+  #     - database_network
 
   adminer:
     image: adminer
     ports:
       - "8080:8080"
-    networks:
-      - database_network
+#     networks:
+#       - database_network
 
-networks:
-  database_network:
-    driver: bridge
+# networks:
+#   database_network:
+#     driver: bridge
 
-volumes:
-  db:
+# volumes:
+#   db:

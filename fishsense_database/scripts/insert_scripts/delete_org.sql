@@ -1,0 +1,1 @@
+SELECT delete_organization(:'organization_name') AS result;

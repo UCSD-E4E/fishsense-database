@@ -7,25 +7,25 @@ CREATE TABLE IF NOT EXISTS lens_calibrations ( -- This should have a jsonb for t
     metadata JSONB NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS laser_calibrations ( -- This should have a JSONB for the actual calibration data
+CREATE TABLE IF NOT EXISTS laser_calibrations ( -- This should have a JSONB for the actual calibration data∂1
     id BIGSERIAL PRIMARY KEY,
     metadata JSONB NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS organizations (
     id BIGSERIAL PRIMARY KEY,
-    organization_name VARCHAR(255) NOT NULL UNIQUE
+    organization_name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS users (
     id BIGSERIAL PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
-    email VARCHAR(320) NOT NULL UNIQUE, -- emails have a max length of 320, local part is 64 char, domain part is 255 char, @ is one, total is 64 + 1 + 255 = 320, rfc3696
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE, -- emails have a max length of 320, local part is 64 char, domain part is 255 char, @ is one, total is 64 + 1 + 255 = 320, rfc3696
     created_utc BIGINT NOT NULL,
     last_login_utc BIGINT,
     oauth_id TEXT UNIQUE,
-    first_name VARCHAR(32),
-    last_name VARCHAR(32),
+    first_name TEXT,
+    last_name TEXT,
     DOB BIGINT
 ); -- maybe set of username and email + more is unique
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS storage_pools (
 
 CREATE TABLE IF NOT EXISTS device_class (
     id BIGSERIAL PRIMARY KEY,
-    device_name VARCHAR(255) NOT NULL,
+    device_name TEXT NOT NULL,
     laser_id BIGINT REFERENCES laser_devices(id)
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS deployments (
     id BIGSERIAL PRIMARY KEY,
     laser_calibration_id BIGINT REFERENCES laser_calibrations(id),
     organization_id BIGINT REFERENCES organizations(id) NOT NULL,
-    deployment_name VARCHAR(255) NOT NULL,
+    deployment_name TEXT NOT NULL,
     latitude FLOAT NOT NULL,
     longitude FLOAT NOT NULL,
     timestamp_utc BIGINT NOT NULL,
@@ -65,8 +65,8 @@ CREATE TABLE IF NOT EXISTS deployments (
 
 CREATE TABLE IF NOT EXISTS files (
     id BIGSERIAL PRIMARY KEY,
-    file_path VARCHAR(260) NOT NULL,
-    mime_type VARCHAR(255) NOT NULL, -- mimetypes have a max length of 255 per rfs 4288
+    file_path TEXT NOT NULL,
+    mime_type TEXT NOT NULL, -- mimetypes have a max length of 255 per rfs 4288
     captured_date_utc BIGINT,
     upload_date_utc BIGINT NOT NULL,
     uploader_id BIGINT REFERENCES users(id),
@@ -100,12 +100,12 @@ CREATE TABLE IF NOT EXISTS fish_masks (
 
 CREATE TABLE IF NOT EXISTS species (
     id BIGSERIAL PRIMARY KEY,
-    species_name VARCHAR(255) NOT NULL
+    species_name TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS fish_identity (
     id BIGSERIAL PRIMARY KEY,
-    identity_name VARCHAR(255) NOT NULL,
+    identity_name TEXT NOT NULL,
     fingerprint JSONB NOT NULL,
     external_reference JSONB NOT NULL
 ); -- fingerprint, external_reference  should be unique

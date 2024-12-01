@@ -1,0 +1,1 @@
+SELECT delete_user(:'username') AS result;
