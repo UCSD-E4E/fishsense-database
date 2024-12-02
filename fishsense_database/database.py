@@ -29,11 +29,11 @@ class Database:
     
         config = {}
 
-        # config["db_host"] = getenv('DB_HOST')
         config["db_name"] = getenv('POSTGRES_DB')
         config["db_user"] = getenv('POSTGRES_USER')
         config["db_password"] = getenv('POSTGRES_PASSWORD')
-        config["db_port"] = getenv(5432)
+        config["db_host"] = "fishsense_database"  
+        config["db_port"] = getenv("POSTGRES_PORT", "5432") 
 
         return config
 
@@ -44,7 +44,7 @@ class Database:
         
         try:
             conn = psycopg2.connect(
-                # host=config["db_host"],
+                host=config["db_host"],
                 database=config["db_name"],
                 user=config["db_user"],
                 password=config["db_password"],
