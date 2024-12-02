@@ -14,8 +14,8 @@ services:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./fishsense_database:/fishsense_database  
 
-    # ports:
-    #   - "5332:5432"
+    ports:
+      - "5332:5432"
     # networks:
     #   - database_network
     restart: always
