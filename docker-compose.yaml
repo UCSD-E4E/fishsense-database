@@ -14,17 +14,17 @@ services:
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./fishsense_database:/fishsense_database  
 
-    ports:
-      - "5332:5432"
+    # ports:
+    #   - "5332:5432"
     # networks:
     #   - database_network
     restart: always
     shm_size: 256mb
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
+    # healthcheck:
+    #   test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
 
   # app:
   #   build: .
