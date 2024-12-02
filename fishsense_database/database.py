@@ -22,7 +22,7 @@ class Database:
         # self._path = path # make a parameter, might need for mobile
         self._connection = None
         self._cursor = None
-        self.time = None
+        self.time = datetime.datetime(1970, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc)
         self.lock_id = "1234123412341234"
         
     def load_config(self):
