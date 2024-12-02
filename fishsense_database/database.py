@@ -29,22 +29,22 @@ class Database:
     
         config = {}
 
-        config["db_host"] = getenv('DB_HOST')
-        config["db_name"] = getenv('DB_NAME')
-        config["db_user"] = getenv('DB_USER')
-        config["db_password"] = getenv('DB_PASSWORD')
-        config["db_port"] = getenv('DB_PORT', 5432)  
+        # config["db_host"] = getenv('DB_HOST')
+        config["db_name"] = getenv('POSTGRES_DB')
+        config["db_user"] = getenv('POSTGRES_USER')
+        config["db_password"] = getenv('POSTGRES_PASSWORD')
+        config["db_port"] = getenv(5432)
 
         return config
 
     def connect(self):
         
         config = self.load_config()
-        print(f"Connecting to database at {config['db_host']} with user \"{config['db_user']}\"")
+        # print(f"Connecting to database at {config['db_host']} with user \"{config['db_user']}\"")
         
         try:
             conn = psycopg2.connect(
-                host=config["db_host"],
+                # host=config["db_host"],
                 database=config["db_name"],
                 user=config["db_user"],
                 password=config["db_password"],
@@ -95,40 +95,40 @@ class Database:
 
         return True
     
-    def init(self):
-        self._connection = self.connect()
-        self._cursor = self._connection.cursor()
+    # def init(self):
+    #     self._connection = self.connect()
+    #     self._cursor = self._connection.cursor()
         
-        self._cursor.execute("SELECT pg_advisory_lock(%s);", (self.lock_id,))
-        print("Initializing database")
+    #     self._cursor.execute("SELECT pg_advisory_lock(%s);", (self.lock_id,))
+    #     print("Initializing database")
 
         
-        self._cursor.execute(open("fishsense-database/scripts/init_database.sql", "r").read())
-        self._connection.commit()
+    #     self._cursor.execute(open("fishsense-database/scripts/init_database.sql", "r").read())
+    #     self._connection.commit()
         
-        print("Database initialized")
-        self._cursor.execute("SELECT pg_advisory_unlock(%s);", (self.lock_id,))
+    #     print("Database initialized")
+    #     self._cursor.execute("SELECT pg_advisory_unlock(%s);", (self.lock_id,))
 
-        self._cursor.close()
-        self._connection.close()
+    #     self._cursor.close()
+    #     self._connection.close()
         
-        if not self.time:
-            self.time = datetime.datetime(2020, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc)  # Set self.time to January 1, 2020 0:00 UTC
+    #     if not self.time:
+    #         self.time = datetime.datetime(2020, 1, 1, 0, 0, 0, tzinfo=datetime.timezone.utc)  # Set self.time to January 1, 2020 0:00 UTC
         
-    def delete(self):
-        self._connection = self.connect()
-        self._cursor = self._connection.cursor()
+    # def delete(self):
+    #     self._connection = self.connect()
+    #     self._cursor = self._connection.cursor()
         
-        self._cursor.execute("SELECT pg_advisory_lock(%s);", (self.lock_id,))
+    #     self._cursor.execute("SELECT pg_advisory_lock(%s);", (self.lock_id,))
 
-        self._cursor.execute(open("fishsense-database/scripts/delete_database.sql", "r").read())
-        self._connection.commit()
+    #     self._cursor.execute(open("fishsense-database/scripts/delete_database.sql", "r").read())
+    #     self._connection.commit()
         
-        self._cursor.execute("SELECT pg_advisory_unlock(%s);", (self.lock_id,))
+    #     self._cursor.execute("SELECT pg_advisory_unlock(%s);", (self.lock_id,))
 
         
-        self._cursor.close()
-        self._connection.close()
+    #     self._cursor.close()
+    #     self._connection.close()
         
     def exec_script(self, file_path : str, http_code : int, parameters= None):
         # TODO add locks?
