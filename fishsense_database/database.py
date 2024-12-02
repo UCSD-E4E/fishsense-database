@@ -142,15 +142,15 @@ class Database:
                 return self._cursor.fetchall()
 
             else:
-                return True
+                return None
         
         except IntegrityError as e:
             print("IntegrityError caught with ", file_path, e)
-            return None
-        
+            return e
+                
         except Exception as e:
             print("Exception caught with ", file_path, e)
-            return None
+            return e
            
     def calc_time_diff(self, time):
         return int((time - self.time).total_seconds())
