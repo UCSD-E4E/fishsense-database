@@ -9,8 +9,8 @@ COPY . /fishsense_database
 
 COPY docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 
-RUN poetry install --no-interaction --with prod
-RUN rm -rf /root/.cache/pypoetry
+# RUN poetry install --no-interaction --with prod
+# RUN rm -rf /root/.cache/pypoetry
 
 # CMD ["python", "__main__.py"]
 
