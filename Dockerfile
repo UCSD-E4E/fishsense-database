@@ -1,9 +1,9 @@
-FROM python:3.11-bullseye
+# FROM python:3.11-bullseye
 FROM postgres:9.4
 
-RUN pip install --upgrade pip
-RUN pip install poetry
-RUN poetry config virtualenvs.create false
+# RUN pip install --upgrade pip
+# RUN pip install poetry
+# RUN poetry config virtualenvs.create false
 WORKDIR /fishsense_database
 COPY . /fishsense_database
 
@@ -12,7 +12,7 @@ COPY docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
 RUN poetry install --no-interaction --with prod
 RUN rm -rf /root/.cache/pypoetry
 
-CMD ["python", "__main__.py"]
+# CMD ["python", "__main__.py"]
 
 # SHELL ["/bin/bash", "-c"] 
 
