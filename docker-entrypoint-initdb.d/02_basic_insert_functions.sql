@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION insert_user (
 )
 RETURNS BIGINT AS $$
 DECLARE
-    user_id BIGINT;
+    user_added RECORD;
 BEGIN
 
     INSERT INTO users (username, email, created_utc, last_login_utc, oauth_id, first_name, last_name, DOB)
@@ -22,13 +22,13 @@ BEGIN
             first_name_param, 
             last_name_param,
             DOB_param)
-    RETURNING id INTO user_id;
+    RETURNING * INTO user_added;
 
-    RETURN user_id;
+    RETURN user_added;
 
 EXCEPTION
     WHEN unique_violation THEN
-        RETURN -1;
+        RETURN NONE;
 
 END;
 $$ LANGUAGE plpgsql;
@@ -60,18 +60,18 @@ CREATE OR REPLACE FUNCTION insert_organization (
 )
 RETURNS BIGINT as $$
 DECLARE
-    organization_id BIGINT;
+    organization_added RECORD;
 BEGIN
     
     INSERT INTO organizations (organization_name)
     VALUES (organization_name_param)
-    RETURNING id INTO organization_id;
+    RETURNING * INTO organization_added;
 
-    RETURN organization_id;
+    RETURN organization_added;
 
 EXCEPTION
     WHEN unique_violation THEN
-        RETURN -1;
+        RETURN NONE;
 
 END;
 $$ LANGUAGE plpgsql;

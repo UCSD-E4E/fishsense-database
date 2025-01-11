@@ -138,19 +138,16 @@ class Database:
             self._cursor.execute(sql_script, parameters)
             self._connection.commit()
             
-            if http_code == HTTP_CODES.GET.value:
-                return self._cursor.fetchall()
+            return self._cursor.fetchall()
 
-            else:
-                return None
         
         except IntegrityError as e:
             print("IntegrityError caught with ", file_path, e)
-            return e
+            return None
                 
         except Exception as e:
             print("Exception caught with ", file_path, e)
-            return e
+            return None
            
     def calc_time_diff(self, time):
         return int((time - self.time).total_seconds())
