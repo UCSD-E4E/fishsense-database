@@ -1,0 +1,1 @@
+SELECT get_user_by_email(:'email') AS result;

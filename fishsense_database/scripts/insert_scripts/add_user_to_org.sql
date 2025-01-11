@@ -1,4 +1,4 @@
 SELECT add_user_to_org(
-    :'username',
+    :'email',
     :'organization_name'
 ) AS result;

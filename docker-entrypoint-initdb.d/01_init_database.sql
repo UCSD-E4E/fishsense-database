@@ -125,6 +125,4 @@ CREATE TABLE IF NOT EXISTS fish (
 
 -- check uniqiuness constraints
 
--- VARCHAR to TEXT xs
-
 -- move foreign key linking to outside of table creationd

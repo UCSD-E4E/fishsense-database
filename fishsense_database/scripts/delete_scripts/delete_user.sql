@@ -1,1 +1,1 @@
-SELECT delete_user(:'username') AS result;
+SELECT delete_user(:'email') AS result;

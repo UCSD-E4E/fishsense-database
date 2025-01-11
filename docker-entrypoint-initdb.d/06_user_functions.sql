@@ -16,7 +16,6 @@ DECLARE
     org_id BIGINT;
     result BIGINT; 
 BEGIN
-
     SELECT insert_user(
         username_param,
         email_param,
@@ -62,16 +61,13 @@ BEGIN
         RAISE EXCEPTION 'Organization User Mapping default not created';
         RETURN FALSE;
     END IF;
-
-
     
     RETURN TRUE;
-
 END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION add_user_to_org (
-    username_param TEXT,
+    email_param TEXT,
     organization_name_param TEXT
 )
 RETURNS BOOLEAN AS $$
@@ -82,7 +78,7 @@ DECLARE
 BEGIN
     
     SELECT u_id
-    FROM get_user_by_username(username_param)
+    FROM get_user_by_email(email_param)
     INTO user_id;
 
     IF user_id IS NULL THEN

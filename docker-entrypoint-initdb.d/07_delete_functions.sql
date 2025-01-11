@@ -1,18 +1,18 @@
 CREATE OR REPLACE FUNCTION delete_user (
-    username_param TEXT
+    email_param TEXT
 )
 RETURNS BOOLEAN as $$
 DECLARE
     success BIGINT;
 BEGIN 
 
-    SELECT u_id FROM get_user_by_username(username_param) INTO success;
+    SELECT u_id FROM get_user_by_email(email_param) INTO success;
 
     DELETE FROM organization_users_map
     WHERE user_id = success;
 
     DELETE FROM users
-    WHERE username = username_param
+    WHERE email = email_param
     RETURNING id INTO success;
 
     IF success = 0 THEN
