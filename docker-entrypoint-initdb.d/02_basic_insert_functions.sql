@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION insert_user (
     last_name_param TEXT,
     DOB_param BIGINT
 )
-RETURNS BIGINT AS $$
+RETURNS RECORD AS $$
 DECLARE
     user_added RECORD;
 BEGIN
@@ -33,7 +33,7 @@ EXCEPTION
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insert_storage_pool (
+CREATE OR REPLACE FUNCTION insert_storage_pool ( -- UPDATE TO RETURN RECORD instead of BIGINT
     storage_name_param TEXT
 )
 RETURNS BIGINT as $$
@@ -58,7 +58,7 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION insert_organization (
     organization_name_param TEXT
 )
-RETURNS BIGINT as $$
+RETURNS RECORD as $$
 DECLARE
     organization_added RECORD;
 BEGIN
