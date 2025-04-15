@@ -40,7 +40,8 @@ CREATE OR REPLACE FUNCTION get_user_by_email(
     u_last_login BIGINT,
     u_oauth_id TEXT,
     u_first_name TEXT,
-    u_last_name TEXT
+    u_last_name TEXT,
+    u_DOB BIGINT
 ) AS $$
 BEGIN
     RETURN QUERY
