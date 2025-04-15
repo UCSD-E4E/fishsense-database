@@ -2,7 +2,7 @@ from fishsense_database.database import Database
 
 def create_db():
     database = Database()
-    database.init()
+    # database.init()
     
     return database
     
