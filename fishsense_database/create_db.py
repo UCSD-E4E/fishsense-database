@@ -1,4 +1,4 @@
-from database import Database
+from fishsense_database.database import Database
 
 def create_db():
     database = Database()
