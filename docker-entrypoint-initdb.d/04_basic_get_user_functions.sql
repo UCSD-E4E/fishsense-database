@@ -48,11 +48,12 @@ BEGIN
         id,
         username,
         email,
-        created,
-        last_login,
+        created_utc,
+        last_login_utc,
         oauth_id,
         first_name,
-        last_name
+        last_name,
+        DOB
     FROM
         users
     WHERE
