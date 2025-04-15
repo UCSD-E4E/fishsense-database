@@ -1,1 +1,1 @@
-SELECT get_user_by_email(:'email') AS result;
+SELECT get_user_by_email(%(email)s) AS result;
