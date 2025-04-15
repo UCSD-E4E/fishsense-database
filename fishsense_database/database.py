@@ -10,12 +10,12 @@ import psycopg2
 import git
 from enum import Enum
 
-class HTTP_CODES(Enum):
-    GET = 1
-    POST = 2
-    PUT = 3
-    PATCH = 4
-    DELETE = 5
+# class HTTP_CODES(Enum):
+#     GET = 1
+#     POST = 2
+#     PUT = 3
+#     PATCH = 4
+#     DELETE = 5
 
 class Database:
     def __init__(self) -> None:
