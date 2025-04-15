@@ -130,7 +130,7 @@ class Database:
     #     self._cursor.close()
     #     self._connection.close()
         
-    def exec_script(self, file_path : str, http_code : int, parameters= None):
+    def exec_script(self, file_path : str, parameters= None):
         # TODO add locks?
         try:  
             sql_script = open(file_path, "r").read()

@@ -1,1 +1,1 @@
-SELECT insert_organization(:'organization_name') AS result;
+SELECT insert_organization(:'organization_name') AS result;-- might need to change to %(___)s for psycopg2/for backend, python
