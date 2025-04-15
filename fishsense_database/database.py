@@ -149,11 +149,11 @@ class Database:
             print("Exception caught with ", file_path, e)
             return None
            
-    def calc_time_diff(self, time):
-        return int((time - self.time).total_seconds())
+    # def calc_time_diff(self, time):
+    #     return int((time - self.time).total_seconds())
     
-    def get_time(self, time_diff):
-        return self.time + datetime.timedelta(seconds=time_diff)
+    # def get_time(self, time_diff):
+    #     return self.time + datetime.timedelta(seconds=time_diff)
          
         
 

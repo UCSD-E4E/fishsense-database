@@ -1,1 +1,1 @@
-SELECT update_last_login(:'email', :'last_login') AS result;
+SELECT update_last_login(%(email)s, %(last_login)s) AS result;
