@@ -1,12 +1,11 @@
 SELECT create_user(
-    :'username',
-    :'email',
-    :'created_utc',
-    :'last_login_utc',
-    :'oauth_id',
-    :'first_name',
-    :'last_name',
-    :'DOB',
-    :'organization_name'
-    -- might need to change to %(___)s for psycopg2
+    %(username)s,
+    %(email)s,
+    %(created_utc)s,
+    %(last_login_utc)s,
+    %(oauth_id)s,
+    %(first_name)s,
+    %(last_name)s,
+    %(DOB)s,
+    %(organization_name)s
 ) AS result;
