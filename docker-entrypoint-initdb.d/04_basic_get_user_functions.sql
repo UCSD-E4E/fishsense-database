@@ -31,7 +31,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION get_user_by_email(
-    email TEXT
+    email_param TEXT
 ) RETURNS TABLE (
     u_id BIGINT,
     u_username TEXT,
@@ -56,6 +56,6 @@ BEGIN
     FROM
         users
     WHERE
-        email = email;
+        email = email_param;
 END;
 $$ LANGUAGE plpgsql;
