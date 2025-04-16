@@ -18,7 +18,6 @@ BEGIN
             email_param, 
             created_param, 
             last_login_param, 
-            -- oauth_id_param, 
             first_name_param, 
             last_name_param,
             DOB_param)

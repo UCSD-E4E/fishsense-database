@@ -3,7 +3,6 @@ SELECT create_user(
     %(email)s,
     %(created_utc)s,
     %(last_login_utc)s,
-    -- %(oauth_id)s,
     %(first_name)s,
     %(last_name)s,
     %(DOB)s,
