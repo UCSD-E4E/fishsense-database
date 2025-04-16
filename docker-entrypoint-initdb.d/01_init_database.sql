@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS users (
     email TEXT NOT NULL UNIQUE, -- emails have a max length of 320, local part is 64 char, domain part is 255 char, @ is one, total is 64 + 1 + 255 = 320, rfc3696
     created_utc BIGINT NOT NULL,
     last_login_utc BIGINT,
-    oauth_id TEXT UNIQUE,
+    -- oauth_id TEXT UNIQUE,
     first_name TEXT,
     last_name TEXT,
     DOB BIGINT
