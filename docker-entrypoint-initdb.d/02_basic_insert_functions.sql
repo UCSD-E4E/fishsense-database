@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION insert_user (
     last_name_param TEXT,
     DOB_param BIGINT
 )
-RETURNS RECORD AS $$
+RETURNS BIGINT AS $$
 DECLARE
     user_id BIGINT;
 BEGIN
