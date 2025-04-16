@@ -6,7 +6,6 @@ CREATE OR REPLACE FUNCTION get_user_by_username(
     u_email TEXT,
     u_created BIGINT,
     u_last_login BIGINT,
-    u_oauth_id TEXT,
     u_first_name TEXT,
     u_last_name TEXT,
     u_DOB BIGINT
@@ -19,7 +18,6 @@ BEGIN
         email,
         created_utc,
         last_login_utc,
-        oauth_id,
         first_name,
         last_name,
         DOB
@@ -38,7 +36,6 @@ CREATE OR REPLACE FUNCTION get_user_by_email(
     u_email TEXT,
     u_created BIGINT,
     u_last_login BIGINT,
-    u_oauth_id TEXT,
     u_first_name TEXT,
     u_last_name TEXT,
     u_DOB BIGINT
@@ -51,7 +48,6 @@ BEGIN
         email,
         created_utc,
         last_login_utc,
-        oauth_id,
         first_name,
         last_name,
         DOB

@@ -3,7 +3,6 @@ CREATE OR REPLACE FUNCTION insert_user (
     email_param TEXT,
     created_param BIGINT,
     last_login_param BIGINT,
-    oauth_id_param TEXT,
     first_name_param TEXT,
     last_name_param TEXT,
     DOB_param BIGINT
@@ -13,7 +12,7 @@ DECLARE
     user_id BIGINT;
 BEGIN
 
-    INSERT INTO users (username, email, created_utc, last_login_utc, oauth_id, first_name, last_name, DOB)
+    INSERT INTO users (username, email, created_utc, last_login_utc, first_name, last_name, DOB)
     VALUES (username_param, 
             email_param, 
             created_param, 

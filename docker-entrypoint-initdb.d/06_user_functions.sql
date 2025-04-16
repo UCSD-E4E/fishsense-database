@@ -4,7 +4,6 @@ CREATE OR REPLACE FUNCTION create_user (
     email_param TEXT,
     created_utc_param BIGINT,
     last_login_utc_param BIGINT,
-    oauth_id_param TEXT,
     first_name_param TEXT,
     last_name_param TEXT,
     DOB_param BIGINT,
