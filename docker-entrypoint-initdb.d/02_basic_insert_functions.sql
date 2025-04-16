@@ -10,7 +10,7 @@ CREATE OR REPLACE FUNCTION insert_user (
 )
 RETURNS RECORD AS $$
 DECLARE
-    user_added RECORD;
+    user_id BIGINT;
 BEGIN
 
     INSERT INTO users (username, email, created_utc, last_login_utc, oauth_id, first_name, last_name, DOB)
@@ -22,9 +22,9 @@ BEGIN
             first_name_param, 
             last_name_param,
             DOB_param)
-    RETURNING * INTO user_added;
+    RETURNING id INTO user_id;
 
-    RETURN user_added;
+    RETURN user_id;
 
 EXCEPTION
     WHEN unique_violation THEN

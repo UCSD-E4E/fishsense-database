@@ -1,11 +1,11 @@
 SELECT create_user(
-    %(username)s::TEXT,
-    %(email)s::TEXT,
-    %(created_utc)s::BIGINT,
-    %(last_login_utc)s::BIGINT,
-    %(oauth_id)s::TEXT,
-    %(first_name)s::TEXT,
-    %(last_name)s::TEXT,
-    %(DOB)s::BIGINT,
-    %(organization_name)s::TEXT
+    %(username)s,
+    %(email)s,
+    %(created_utc)s,
+    %(last_login_utc)s,
+    %(oauth_id)s,
+    %(first_name)s,
+    %(last_name)s,
+    %(DOB)s,
+    %(organization_name)s
 ) AS result;
