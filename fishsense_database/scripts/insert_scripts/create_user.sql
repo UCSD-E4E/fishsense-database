@@ -4,8 +4,8 @@ SELECT create_user(
     %(created_utc)s,
     %(last_login_utc)s,
     %(oauth_id)s,
-    %(first_name)s,
-    %(last_name)s,
-    %(DOB)s,
-    %(organization_name)s
+    NULL::%(first_name)s,
+    NULL::%(last_name)s,
+    NULL::%(DOB)s,
+    NULL::%(organization_name)s
 ) AS result;
