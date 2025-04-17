@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION create_user (
     DOB_param BIGINT,
     organization_name_param TEXT
 )
-RETURNS user_id AS $$
+RETURNS BIGINT AS $$
 DECLARE
     user_id BIGINT;
     org_id BIGINT;
