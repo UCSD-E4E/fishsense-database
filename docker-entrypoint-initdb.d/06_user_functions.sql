@@ -9,7 +9,7 @@ CREATE OR REPLACE FUNCTION create_user (
     DOB_param BIGINT,
     organization_name_param TEXT
 )
-RETURNS BOOLEAN AS $$
+RETURNS user_id AS $$
 DECLARE
     user_id BIGINT;
     org_id BIGINT;
@@ -27,7 +27,7 @@ BEGIN
 
     IF user_id = -1 THEN
         RAISE EXCEPTION 'User Unique Violation';
-        RETURN FALSE;
+        RETURN -1;
     END IF;
     
     IF organization_name_param IS NOT NULL THEN 
@@ -43,7 +43,7 @@ BEGIN
 
             IF result IS NULL THEN
                 RAISE EXCEPTION 'Organization User Mapping not created: Invalid Input';
-                RETURN FALSE;
+                RETURN -1;
             END IF;
         END IF;
     
@@ -57,10 +57,10 @@ BEGIN
 
     IF result IS NULL THEN
         RAISE EXCEPTION 'Organization User Mapping default not created';
-        RETURN FALSE;
+        RETURN -1;
     END IF;
     
-    RETURN TRUE;
+    RETURN user_id;
 END;
 $$ LANGUAGE plpgsql;
 

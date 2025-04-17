@@ -26,7 +26,7 @@ BEGIN
 
 EXCEPTION
     WHEN unique_violation THEN
-        RETURN NONE;
+        RETURN -1;
 
 END;
 $$ LANGUAGE plpgsql;
